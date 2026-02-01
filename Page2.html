@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forever 💖</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+    overflow:hidden;
+    color:white;
+}
+
+/* Floating background messages */
+.floating{
+    position:absolute;
+    font-size:14px;
+    opacity:0.7;
+    animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+    from{transform:translateY(110vh);opacity:0;}
+    20%{opacity:1;}
+    to{transform:translateY(-10vh);opacity:0;}
+}
+
+/* Center card */
+.card{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
+    padding:35px;
+    border-radius:25px;
+    text-align:center;
+    width:90%;
+    max-width:420px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.4);
+    animation:pop 1.2s ease;
+}
+
+@keyframes pop{
+    from{transform:translate(-50%,-50%) scale(0.7);opacity:0;}
+    to{transform:translate(-50%,-50%) scale(1);opacity:1;}
+}
+
+h1{
+    font-size:26px;
+    margin-bottom:20px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:25px;
+}
+
+button{
+    padding:12px 28px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#yes{
+    background:linear-gradient(45deg,#ff6ec7,#ffc371);
+    color:black;
+}
+
+#yes:hover{
+    transform:scale(1.1);
+}
+
+#no{
+    background:#444;
+    color:white;
+    position:relative;
+}
+
+/* Final message */
+.result{
+    display:none;
+    margin-top:25px;
+    font-size:17px;
+    animation:fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+/* FOREVER animation */
+.forever{
+    display:none;
+    font-size:40px;
+    margin-top:20px;
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{text-shadow:0 0 10px #ff6ec7;}
+    to{text-shadow:0 0 30px #ff6ec7;}
+}
+
+/* Fireworks */
+.firework{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:white;
+    animation:explode 1s linear forwards;
+}
+
+@keyframes explode{
+    to{
+        transform:translate(var(--x),var(--y));
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+    <h1>Will you be with me forever? 💖</h1>
+
+    <div class="buttons" id="buttons">
+        <button id="yes">Yes 💕</button>
+        <button id="no">No 😜</button>
+    </div>
+
+    <div class="result" id="result">
+        From my heart 💫 <br><br>
+        I don’t promise perfection,  
+        but I promise honesty, care,  
+        laughter, and standing by you  
+        in every season of life 💖  
+        <br><br>
+        — Sandip
+    </div>
+
+    <div class="forever" id="forever">FOREVER ♾️</div>
+</div>
+
+<script>
+/* Floating background text */
+const bgText=[
+    "You matter 💖","Some bonds last forever ✨",
+    "Your smile is magic 🌸","This moment is real 💫"
+];
+
+setInterval(()=>{
+    const t=document.createElement("div");
+    t.className="floating";
+    t.innerText=bgText[Math.floor(Math.random()*bgText.length)];
+    t.style.left=Math.random()*90+"vw";
+    t.style.animationDuration=(Math.random()*4+6)+"s";
+    document.body.appendChild(t);
+    setTimeout(()=>t.remove(),10000);
+},700);
+
+/* NO button escape (mouse + touch) */
+const noBtn=document.getElementById("no");
+function moveNo(){
+    const x=Math.random()*200-100;
+    const y=Math.random()*200-100;
+    noBtn.style.transform=`translate(${x}px,${y}px)`;
+}
+noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("touchstart",moveNo);
+
+/* YES click */
+document.getElementById("yes").addEventListener("click",()=>{
+    document.getElementById("buttons").style.display="none";
+    document.getElementById("result").style.display="block";
+    document.getElementById("forever").style.display="block";
+    launchFireworks();
+});
+
+/* Fireworks effect */
+function launchFireworks(){
+    for(let i=0;i<80;i++){
+        const f=document.createElement("div");
+        f.className="firework";
+        f.style.left="50%";
+        f.style.top="50%";
+        f.style.background=`hsl(${Math.random()*360},100%,60%)`;
+        f.style.setProperty("--x",`${Math.random()*400-200}px`);
+        f.style.setProperty("--y",`${Math.random()*400-200}px`);
+        document.body.appendChild(f);
+        setTimeout(()=>f.remove(),1000);
+    }
+}
+</script>
+
+</body>
+</html>

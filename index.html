@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nisha 💖</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    overflow: hidden;
+}
+
+/* Card */
+.card {
+    width: 90%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(14px);
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: zoomIn 1.2s ease;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+}
+
+@keyframes zoomIn {
+    from { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    margin-bottom: 15px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+h1 {
+    color: white;
+    font-size: 28px;
+}
+
+.typing {
+    margin-top: 12px;
+    color: white;
+    font-size: 15px;
+    min-height: 40px;
+}
+
+button {
+    margin-top: 22px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 40px;
+    background: white;
+    color: #ff4d6d;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+button:hover {
+    background: #ff4d6d;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    color: rgba(255,255,255,0.8);
+    font-size: 20px;
+    animation: rise 6s linear infinite;
+}
+
+@keyframes rise {
+    from { transform: translateY(100vh); opacity: 0; }
+    20% { opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <img src="Nisha.jpeg">
+    <h1>Hello Nisha 💖</h1>
+    <div class="typing" id="text"></div>
+
+    <button onclick="goNext()">Click Me ✨</button>
+</div>
+
+<script>
+const msg = "Someone made this page just to see you smile 😊";
+let i = 0;
+const text = document.getElementById("text");
+
+function type() {
+    if (i < msg.length) {
+        text.innerHTML += msg.charAt(i);
+        i++;
+        setTimeout(type, 50);
+    }
+}
+type();
+
+function goNext() {
+    window.location.href = "page2.html";
+}
+
+function heart() {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (Math.random() * 3 + 4) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 7000);
+}
+setInterval(heart, 400);
+</script>
+
+</body>
+</html>
